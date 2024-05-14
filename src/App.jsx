@@ -4,17 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function Todo(props) {
-  
+
   return (
     <div>
       <div className='todoCard' >
-        <p>{props.todo.name}</p>
+        <p2>{props.todo.name}</p2>
         <p>{props.todo.list}</p>
         <div>
-          <button onClick={() => props.handleDelete(props.todo.name)}>
+          <button className='deleteBtn' onClick={() => props.handleDelete(props.todo.name)}>
             삭제하기</button>
-          <button>
+
+            {props.todo.completed ? (
+              <button className='noCompleteBtn' onClick={() => props.handleUnComplete(props.todo.name)}>취소</button>
+            ) : (
+          <button className='completeBtn' onClick={() => props.handleComplete(props.todo.name)}>
             완료</button>
+            )}
         </div>
       </div>
     </div>
@@ -27,10 +32,12 @@ const App = () => {
 
   const [name, setName] = useState('');
   const [list, setList] = useState('');
+
   const addTodoHandler = () => {
     const newTodo = {
       name: name,
       list: list,
+      completed: false
     };
     setTodos([...todo, newTodo]);
   };
@@ -39,6 +46,22 @@ const App = () => {
     setTodos(todo.filter(todo => todo.name !== name));
   };
 
+  const handleComplete = (name) => {
+    const updateTodo = todo.map(todo =>
+      todo.name === name ? { ...todo, completed: true } : todo
+    )
+    setTodos(updateTodo);
+  }
+
+  const handleUnComplete = (name) => {
+    const updateTodo = todo.map(todo =>
+      todo.name === name ? { ...todo, completed: false } : todo
+    )
+    setTodos(updateTodo);
+  }
+
+  const workingTodo = todo.filter(todo => !todo.completed);
+  const doneTodo = todo.filter(todo => todo.completed);
 
   return (
     <>
@@ -48,9 +71,9 @@ const App = () => {
           <p>React</p>
         </div>
         <div className='addBox'>
-          제목 <input value={name}
+          제 목 <input value={name}
             onChange={(e) => setName(e.target.value)} />
-          내용 <input value={list}
+          내 용 <input value={list}
             onChange={(e) => setList(e.target.value)} />
 
           <button className='addBtn'
@@ -59,14 +82,26 @@ const App = () => {
 
 
         <div>
-          <p>Working..</p>
+          <p1>Working..</p1>
           <div className='todoCards'>
-            {todo.map((todo) => {
-              return <Todo todo={todo} handleDelete={handleDelete}/>
-            })}
+            {workingTodo.map(todo =>
+              <Todo
+                todo={todo}
+                handleDelete={handleDelete}
+                handleComplete={handleComplete}
+              />
+            )}
           </div>
-          <p>Done..</p>
-          <div></div>         
+          <p1>Done..</p1>
+          <div className='todoCards'>
+          {doneTodo.map(todo =>
+              <Todo
+                todo={todo}
+                handleDelete={handleDelete}
+                handleUnComplete={handleUnComplete}
+              />
+            )}  
+            </div>        
         </div>
       </div>
     </>
