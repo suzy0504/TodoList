@@ -1,0 +1,75 @@
+.layout {  
+  min-width: 800px;
+  max-width: 1200px;
+  margin: auto;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.addBtn {
+  background-color: #848484;
+  margin-left: auto;
+  width: 250px;
+  height: 50px;
+  border-radius: 10px;
+  border: 0;
+  font-size: 20px;
+  font-family: 'NEXON Lv2 Gothic';
+}
+
+.addBox {
+  background-color: #cacaca;
+  display: flex;
+  padding: 0 20px 0 20px;
+  align-items: center;
+  height: 100px;
+  border-radius: 20px;
+  font-size: 30px;
+  font-family: 'NEXON Lv2 Gothic';
+}
+
+input {
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: left;
+  border-radius: 10px;
+  border: 0;
+  width: 350px;
+  height: 50px;
+}
+
+.heder {
+  display: flex;
+  justify-content: space-between;
+  padding:  0 20px 0 20px;
+  font-family: 'NEXON Lv2 Gothic';
+  font-weight: bolder;
+}
+
+.todoCard {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-family: 'NEXON Lv2 Gothic';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.todoCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
